@@ -2,7 +2,8 @@ const express = require('express');
 const server = express();
 const Sensor = require('./Sensor');
 const Sensor02 = require('./Sensor02');
-
+var value1 = 0;
+var value2 = 0;
 
 //from nodemcu
 server.get('/', (req, res) => {
