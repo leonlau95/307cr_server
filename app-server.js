@@ -2,10 +2,21 @@ const express = require('express');
 const server = express();
 const Sensor = require('./Sensor');
 const Sensor02 = require('./Sensor02');
+const cors = require('cors');
 var value1 = 0;
 var value2 = 0;
 
 const port = process.env.PORT || 2000;
+
+server.use(cors());
+server.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 //from nodemcu
 server.get('/', (req, res) => {
@@ -161,6 +172,16 @@ server.get('/count02', (req, res) => {
     .catch(error => {
       res.status(200).json(error);
     });
+});
+
+server.get('/deleteall', (req, res) => {
+  Sensor.deleteMany({})
+  .then((response)=>{
+    res.status(200).send(response);
+  })
+  .catch((error)=>{
+    res.status(400).send(error);
+  })
 });
 
 
