@@ -5,6 +5,8 @@ const Sensor02 = require('./Sensor02');
 var value1 = 0;
 var value2 = 0;
 
+const port = process.env.PORT || 2000;
+
 //from nodemcu
 server.get('/', (req, res) => {
   var value1 = req.query.sensor1;
@@ -162,6 +164,6 @@ server.get('/count02', (req, res) => {
 });
 
 
-server.listen(3000, () => {
-  console.log('server started on port 3000');
+server.listen(port, () => {
+  console.log(`server started on port ${port}`);
 });
