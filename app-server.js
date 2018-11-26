@@ -106,25 +106,6 @@ server.get('/count', (req, res) => {
     });
 });
 
-//from nodemcu
-server.get('/', (req, res) => {
-  value = req.query.sensor2;
-  prune2();
-  const sensorData = new Sensor02({
-    name: 'sensor2',
-    value: req.query.sensor2
-  });
-  sensorData
-    .save()
-    .then(response => {
-      console.log(response);
-      res.status(200).json(response);
-    })
-    .catch(error => {
-      res.status(400).json(error);
-    });
-});
-
 //from react - get the current value
 server.get('/getsensor2', (req, res) => {
   // res.status(200).send(JSON.stringify(value));
@@ -173,24 +154,6 @@ server.get('/count02', (req, res) => {
       res.status(200).json(error);
     });
 });
-
-server.get('/deleteall', (req, res) => {
-  Sensor.deleteMany({})
-  .then((response)=>{
-    res.status(200).send(response);
-  })
-  .catch((error)=>{
-    res.status(400).send(error);
-  })
-  Sensor02.deleteMany({})
-  .then((response)=>{
-    res.status(200).send(response);
-  })
-  .catch((error)=>{
-    res.status(400).send(error);
-  })
-});
-
 
 server.listen(port, () => {
   console.log(`server started on port ${port}`);
