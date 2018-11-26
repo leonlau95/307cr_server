@@ -182,6 +182,13 @@ server.get('/deleteall', (req, res) => {
   .catch((error)=>{
     res.status(400).send(error);
   })
+  Sensor02.deleteMany({})
+  .then((response)=>{
+    res.status(200).send(response);
+  })
+  .catch((error)=>{
+    res.status(400).send(error);
+  })
 });
 
 
