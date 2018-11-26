@@ -35,15 +35,15 @@ server.get('/', (req, res) => {
     .catch(error => {
       res.status(400).json(error);
     });
-    sensorData2
-      .save()
-      .then(response => {
-        console.log(response);
-        res.status(200).json(response);
-      })
-      .catch(error => {
-        res.status(400).json(error);
-      });
+  sensorData2
+    .save()
+    .then(response => {
+      console.log(response);
+      res.status(200).json(response);
+    })
+    .catch(error => {
+      res.status(400).json(error);
+    });
 });
 
 //from react - get the current value
