@@ -9,8 +9,8 @@ const port = process.env.PORT || 2000;
 
 //from nodemcu
 server.get('/', (req, res) => {
-  var value1 = req.query.sensor1;
-  var value2 = req.query.sensor2;
+  let value1 = req.query.sensor1;
+  let value2 = req.query.sensor2;
 
   const responsestr = `sensor1: ${value1}, sensor2: ${value2}`;
 
@@ -19,12 +19,12 @@ server.get('/', (req, res) => {
   prune();
   const sensorData = new Sensor({
     name: 'sensor1',
-    value: req.query.sensor1
+    value: value1
   });
   prune2();
   const sensorData2 = new Sensor02({
     name: 'sensor2',
-    value: req.query.sensor2
+    value: value2
   });
   sensorData
     .save()
